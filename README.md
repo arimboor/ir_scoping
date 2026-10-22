@@ -1,5 +1,21 @@
-Scenario 1: the tenant never consented to the app
-“In this scenario the customer tenant never consented to ConnectWise Cloud Backup, so no service principal exists for it. Yet the service principal sign-in logs show successful sign-ins to Microsoft Graph by the app (506e08f9-6e9a-4da4-942b-a099a03644ae). This is service principal-less authentication: anyone holding the app’s stolen credentials can request a token against any tenant, and Entra issues one even though the app has no local identity. That’s why appServicePrincipalId shows all zeros. There is no object in the tenant for it to point to. Because no consent was ever given, the token should carry no permissions, so the likely impact is low, and the activity is best read as reconnaissance across many tenants. Responders should confirm that no service principal, consent grant or credentials were added in the Entra audit logs, check the Graph activity logs or the unified audit log for any data access, and block the attacker IP.”
+At 07:00 UTC on October 17, 2026, ConnectWise disabled the seven application identities listed below and
+revoked the associated credentials as part of our containment actions. These vendor-side actions do not change
+the configuration of enterprise applications within individual partner or customer tenants.
+Verify the local enterprise-application setting in every tenant you administer. Vendor-side containment and local
+tenant settings are different controls; this table does not document a local change in every tenant. Previously
+issued tokens may remain usable until they expire or are otherwise invalidated. Separate unauthorized
+credentials, grants, or identities require investigation and remediation.
 
-Scenario 2: the tenant consented to the app
-“Here the tenant had consented to ConnectWise Cloud Backup, so a service principal exists, and the sign-in logs show its real object ID in appServicePrincipalId. The attacker signs in through that service principal and gets a token carrying every permission the customer granted for backup, typically full read access to mail, files and Teams, and in some cases directory write permissions. The impact is potentially severe: data access, directory reconnaissance and persistence, which Microsoft observed as attackers attempting to add their own credentials to service principals. Responders should disable the enterprise app without deleting it, look for credentials or role assignments added since October 1, and review the Graph activity logs and unified audit log for MailItemsAccessed, FileAccessed and bulk Graph reads from unrecognised IPs.”
+Application Application client ID
+ConnectWise Cloud Backup 506e08f9-6e9a-4da4-942b-a099a03644ae
+ConnectWise Cloud Management 2399d300-6fca-4e6a-a686-399fefe75b83
+Cloud Management - MS Teams 24205314-2b89-4e07-a2a4-579e898a5640
+Cloud Management - Exchange Online b78f6a77-d4e5-46fb-87e5-d1648bd02519
+Cloud Management - MS Graph 0de14c77-b9b0-4137-9360-34878a929827
+Cloud Backup technical investigation and remediation guide | 3
+Application Application client ID
+Cloud Management - Partner Center 412dcf96-176d-4b3a-a1b0-4981ad66971e
+Cloud Management - SharePoint Online b2b55f5b-7758-4719-8d8f-88ae172e6bdb
+Older installations may display SkyKick Cloud Manager names. Match on Application ID rather than display
+name, and record the local Object ID as well. Do not assume a similarly named application has the same identity
+or status.
