@@ -1,1 +1,2 @@
-https://www.connectwise.com/contentassets/10777cd3364d440c86ed5270a94a5f24/connectwise-cloud-backup-technical-investigation-and-remediation-guide-1.pdf
+https://aviatrix.ai/threat-research-center/hackers-compromised-connectwise-credential-173-microsoft-365-tenants-2026/
+
