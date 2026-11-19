@@ -1,6 +1,3 @@
-https://aviatrix.ai/threat-research-center/hackers-compromised-connectwise-credential-173-microsoft-365-tenants-2026/
-https://www.todyl.com/blog/investigation-unauthorized-access-through-the-connectwise-cloud-backup-microsoft-365-app
-https://www.mitiga.io/blog/connectwise-breach-entra-app-abuse
-https://specterops.io/blog/2026/10/17/connectwise-skykick-breach-microsoft-365/
-https://www.reddit.com/r/msp/comments/1x7gw61/cwskykick_breach/
-
+On 14 October 2026, the organisation was targeted by a Microsoft Teams phishing campaign in which the threat actor posed as IT support. According to information provided by the customer, several users were contacted and three engaged with the actor. This report covers the analysis of one of those users and their device.
+The threat actor persuaded the user to start a Microsoft Quick Assist remote session, which gave the actor remote access to the device. During that session, a malicious installer was run. It downloaded a legitimate Node.js runtime and used it to execute a JavaScript-based implant consistent with command-and-control activity. The actor relied on built-in Windows tools, renamed files and encoded configuration values to avoid detection. Persistence was set up through a shortcut placed in the user's Startup folder, so the malware would run again at each logon.
+After that, the device showed automated discovery of the system and domain. These tactics match a known threat group whose campaigns have previously led to ransomware deployment. The activity was assessed as the reconnaissance stage before ransomware. We found no evidence of data encryption, credential dumping or lateral movement. Microsoft Defender detected the activity, and the device was isolated the same day, about 1.5 hours after initial access.
